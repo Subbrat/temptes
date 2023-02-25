@@ -5,6 +5,7 @@
 " />
     <title> SciAstra x TVISHA - the annual inter college fest of NISER </title>
     <link rel="stylesheet" href="./../Assets/Css/s6css.css">
+    <link rel="stylesheet" href="./../Assets/Css/Courses.css">
     <link rel="stylesheet" href="./../Assets/Css/Common.css">
     <style>
         @media(min-width:993px) {
@@ -266,8 +267,8 @@
 </head>
 <div class="flex-wrapper">
     <?php
-    $pageTitle = 'courses';
     $pT = 'courses';
+    $pageTitle = 'TSS NISER';
     include('./Includes/Conn.php');
     $count = 0;
     $ContentCount = 0;
@@ -277,33 +278,32 @@
     $name = 'Courses';
     include('./data-collect.php');
     // Query For Desktop Courses Page
-    $selectExam = "SELECT * FROM `college_cat` WHERE `college_cat_status` = 'Active' ORDER BY `college_display_order` ASC";
+    $selectExam = "SELECT * FROM `college_cat` WHERE college_cat_name = 'TSS NISER'";
     $exeSelectExam = mysqli_query($conn, $selectExam);
     while ($rowExam = mysqli_fetch_assoc($exeSelectExam)) {
         if ($count == 0) {
-            $tab_heading .= ' <button class="nav-link course__left__side__li__a mb-4 px-5 py-3 btn active" id="' . $rowExam['college_car_id'] . '" data-bs-toggle="pill" data-bs-target="#pills-' . $rowExam['college_car_id'] . '" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">' . $rowExam['college_cat_name'] . '</button>';
+            $tab_heading .=  '<button class="course__left__side__li__a mb-4 px-5 py-4 btn active" id="' . $rowExam['college_car_id'] . '" data-bs-toggle="pill" data-bs-target="#pills-' . $rowExam['college_car_id'] . '" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">';
+            $tab_heading .= '<font color="black">' . $rowExam['college_cat_name'] . '</font>';
+            $tab_heading .= '</div>';
+            //$tab_heading .= ' <button class="nav-link course__left__side__li__a mb-4 px-5 py-3 btn active" id="' . $rowExam['college_car_id'] . '" data-bs-toggle="pill" data-bs-target="#pills-' . $rowExam['college_car_id'] . '" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">' . $rowExam['college_cat_name'] . '</button>';
             $tab_content .= '<div class="tab-pane fade showive row" id="pills-' . $rowExam['college_car_id'] . '" role="tabpanel" aria-labelledby="pills-' . $rowExam['college_car_id'] . '" tabindex="' . $rowExam['college_car_id'] . '">';
         } else {
-            $tab_heading .= ' <button class="nav-link course__left__side__li__a mb-4 px-5 py-3 btn" id="' . $rowExam['college_car_id'] . '" data-bs-toggle="pill" data-bs-target="#pills-' . $rowExam['college_car_id'] . '" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">' . $rowExam['college_cat_name'] . '</button>';
+            $tab_heading .= ' <button class="course__left__side__li__a mb-4 px-5 py-3 btn" id="' . $rowExam['college_car_id'] . '" data-bs-toggle="pill" data-bs-target="#pills-' . $rowExam['college_car_id'] . '" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">' . $rowExam['college_cat_name'] . '</button>';
             $tab_content .= '<div class="tab-pane fade row" id="pills-' . $rowExam['college_car_id'] . '" role="tabpanel" aria-labelledby="pills-' . $rowExam['college_car_id'] . '" tabindex="' . $rowExam['college_car_id'] . '">';
         }
-        $productQuery = "SELECT * FROM `courses` WHERE `course_college_id` LIKE '%" . $rowExam['college_car_id'] . "%' AND `course_status` = 'Active'";
+        $productQuery = "SELECT * FROM `courses` WHERE `course_college_id` = '" . $rowExam['college_car_id'] . "' AND `course_status` = 'Active'";
+        echo $productQuery;
         $productResult = mysqli_query($conn, $productQuery);
         if (mysqli_num_rows($productResult) > 0) {
             if (mysqli_num_rows($productResult) < 2) {
                 while ($proRow = mysqli_fetch_assoc($productResult)) {
                     $dis_price = ($proRow['course_org_amt'] - $proRow['course_dis_amt']) / $proRow['course_org_amt'] * 100;
-                    $tab_content .= '<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 mb-4" style="width:25rem;">
-                <div class="p-4 rounded-3 course__right__side__card">
-                    <h1 class="course__main__heading fs-3 mb-3">
-                        ' . $proRow['course_title'] . '
-                    </h1>
-                    <a href="' . $proRow['course_detail_link'] . '" class="text-black-50 fw-semibold ">View Details
-                        &nbsp;
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                    <div class="d-flex justify-content-between mt-4 align-items-center">
-                        <div class="position-relative">';
+                    //echo "<script>alert('".$dis_price."')</script>";
+                    $tab_content .= '<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 mb-4" style="width:25rem;">';
+                    $tab_content .= '<div class="p-4 rounded-3 course__right__side__card"><h1 class="course__main__heading fs-3 mb-3">';
+                    $tab_content .= '<font color="black">' . $proRow['course_title'] . '</font>';
+                    $tab_content .= '</h1><a href="' . $proRow['course_detail_link'] . '" class="text-black-50 fw-semibold ">View Details&nbsp;<i class="bi bi-arrow-right"></i></a>';
+                    $tab_content .= '<div class="d-flex justify-content-between mt-4 align-items-center"><div class="position-relative">';
                     if ($proRow['course_org_amt'] != $proRow['course_dis_amt']) {
                         $tab_content .= '<p class="course__section__price mb-0 old__price">
                                 &#8377;&nbsp;' . $proRow['course_org_amt'] . '
@@ -631,6 +631,7 @@
     <!-- Main Footer  -->
     <?php include('./Includes/Footer.php'); ?>
 </div>
+<script src="https://releases.jquery.com/git/jquery-git.min.js"></script>
 <script>
     // Accordion
     var accordion = (function() {
