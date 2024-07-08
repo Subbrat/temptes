@@ -16,35 +16,47 @@
     <table id="maintable" class="display compact cell-border" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-
+                <th>Tax ID</th>
+                <th>Tax Name</th>
+                <th>Tax Species</th>
+                <th>Tax Genus</th>
+                <th>Tax Family</th>
+                <th>Tax Order</th>
+                <th>Tax Class</th>
+                <th>Tax Phylum</th>
+                <th>Tax Kingdom</th>
+                <th>Tax Superkingdom</th>
             </tr>
         </thead>
         <tfoot style="background-color: #c0c0c0; color: #ffffff; font-size: 0.9em; ">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <th>Tax ID</th>
+                <th>Tax Name</th>
+                <th>Tax Species</th>
+                <th>Tax Genus</th>
+                <th>Tax Family</th>
+                <th>Tax Order</th>
+                <th>Tax Class</th>
+                <th>Tax Phylum</th>
+                <th>Tax Kingdom</th>
+                <th>Tax Superkingdom</th>
             </tr>
         </tfoot>
         <tbody>
             <?php
             // include 'conn.php'; // Assuming conn.php has the connection code
-            $sql = "SELECT * FROM coordinates";
+            $sql = "SELECT * FROM division";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 echo "results found";
                 // Output data of each row
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["id"] . "</td>";
-                    echo "<td>" . $row["name"] . "</td>";
-                    echo "<td>" . $row["latitude"] . "</td>";
-                    echo "<td>" . $row["longitude"] . "</td>";
+                    echo "<td>" . $row["division_id"] . "</td>";
+                    echo "<td>" . $row["division_cde"] . "</td>";
+                    echo "<td>" . $row["division_name"] . "</td>";
+                    echo "<td>" . $row["comments"] . "</td>";
+
                     echo "</tr>";
                 }
             } else {
