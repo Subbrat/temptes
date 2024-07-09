@@ -63,15 +63,6 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $row["tax_id"] . "</td>";
-                        // echo "<td>" . $row["tax_name"] . "</td>";
-                        // echo "<td>" . $row["tax_species"] . "</td>";
-                        // echo "<td>" . $row["tax_genus"] . "</td>";
-                        // echo "<td>" . $row["tax_family"] . "</td>";
-                        // echo "<td>" . $row["tax_order"] . "</td>";
-                        // echo "<td>" . $row["tax_class"] . "</td>";
-                        // echo "<td>" . $row["tax_phylum"] . "</td>";
-                        // echo "<td>" . $row["tax_kingdom"] . "</td>";
-                        // echo "<td>" . $row["tax_superkingdom"] . "</td>";
                         echo "</tr>";
                     }
                 } else {
