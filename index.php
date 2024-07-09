@@ -16,41 +16,63 @@
     <table id="maintable" class="display compact cell-border" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-
+                <th>Tax ID</th>
+                <!-- <th>Tax Name</th>
+                <th>Tax Species</th>
+                <th>Tax Genus</th>
+                <th>Tax Family</th>
+                <th>Tax Order</th>
+                <th>Tax Class</th>
+                <th>Tax Phylum</th>
+                <th>Tax Kingdom</th>
+                <th>Tax Superkingdom</th> -->
             </tr>
         </thead>
         <tfoot style="background-color: #c0c0c0; color: #ffffff; font-size: 0.9em; ">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
+                <th>Tax ID</th>
+                <!-- <th>Tax Name</th>
+                <th>Tax Species</th>
+                <th>Tax Genus</th>
+                <th>Tax Family</th>
+                <th>Tax Order</th>
+                <th>Tax Class</th>
+                <th>Tax Phylum</th>
+                <th>Tax Kingdom</th>
+                <th>Tax Superkingdom</th> -->
             </tr>
         </tfoot>
         <tbody>
             <?php
             // include 'conn.php'; // Assuming conn.php has the connection code
-            $sql = "SELECT * FROM coordinates";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                echo "results found";
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["id"] . "</td>";
-                    echo "<td>" . $row["name"] . "</td>";
-                    echo "<td>" . $row["latitude"] . "</td>";
-                    echo "<td>" . $row["longitude"] . "</td>";
-                    echo "</tr>";
+            try {
+                $sql = "SELECT tax_id FROM rankedlineage";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    echo "results found";
+                    // Output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $row["tax_id"] . "</td>";
+                        // echo "<td>" . $row["tax_name"] . "</td>";
+                        // echo "<td>" . $row["tax_name"] . "</td>";
+                        // echo "<td>" . $row["tax_species"] . "</td>";
+                        // echo "<td>" . $row["tax_genus"] . "</td>";
+                        // echo "<td>" . $row["tax_family"] . "</td>";
+                        // echo "<td>" . $row["tax_order"] . "</td>";
+                        // echo "<td>" . $row["tax_class"] . "</td>";
+                        // echo "<td>" . $row["tax_phylum"] . "</td>";
+                        // echo "<td>" . $row["tax_kingdom"] . "</td>";
+                        // echo "<td>" . $row["tax_superkingdom"] . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='10'>No results found</td></tr>";
                 }
-            } else {
-                echo "<tr><td colspan='10'>No results found</td></tr>";
+                $conn->close();
+            } catch (Exception $e) {
+                throw $e;
             }
-            $conn->close();
             ?>
         </tbody>
     </table>
