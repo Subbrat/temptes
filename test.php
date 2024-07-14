@@ -1,6 +1,7 @@
 <?php require('./class/con.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
@@ -10,16 +11,35 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>The data table you need!</title>
 </head>
+
 <body class="container">
     <table id="maintable" class="display compact cell-border" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Tax ID</th>
+                <th>Tax Name</th>
+                <th>Tax Species</th>
+                <th>Tax Genus</th>
+                <th>Tax Family</th>
+                <th>Tax Order</th>
+                <th>Tax Class</th>
+                <th>Tax Phylum</th>
+                <th>Tax Kingdom</th>
+                <th>Tax Superkingdom</th>
             </tr>
         </thead>
         <tfoot style="background-color: #c0c0c0; color: #ffffff; font-size: 0.9em;">
             <tr>
                 <th>Tax ID</th>
+                <th>Tax Name</th>
+                <th>Tax Species</th>
+                <th>Tax Genus</th>
+                <th>Tax Family</th>
+                <th>Tax Order</th>
+                <th>Tax Class</th>
+                <th>Tax Phylum</th>
+                <th>Tax Kingdom</th>
+                <th>Tax Superkingdom</th>
             </tr>
         </tfoot>
         <tbody>
@@ -54,6 +74,15 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $row["tax_id"] . "</td>";
+                        echo "<td>" . $row["tax_name"] . "</td>";
+                        echo "<td>" . $row["tax_species"] . "</td>";
+                        echo "<td>" . $row["tax_genus"] . "</td>";
+                        echo "<td>" . $row["tax_family"] . "</td>";
+                        echo "<td>" . $row["tax_order"] . "</td>";
+                        echo "<td>" . $row["tax_class"] . "</td>";
+                        echo "<td>" . $row["tax_phylum"] . "</td>";
+                        echo "<td>" . $row["tax_kingdom"] . "</td>";
+                        echo "<td>" . $row["tax_superkingdom"] . "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -87,4 +116,5 @@
     <script type="text/javascript" src="js/datatables.mark.js"></script>
     <script type="text/javascript" src="js/buttons.colVis.min.js"></script>
 </body>
+
 </html>
